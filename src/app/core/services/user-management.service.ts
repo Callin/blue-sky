@@ -7,10 +7,19 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class UserManagementService {
-  private apiUrl = "localhost:8081/api/user";
+  private apiUrl = "/api/user";
   constructor(private httpClient: HttpClient) { }
 
   public getAllUser(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.apiUrl}/all`);
+  }
+  public getUser(id: string): Observable<User> {
+    return this.httpClient.get<User>(this.apiUrl + "/" + id);
+  }
+  public addUser(user: User): Observable<User> {
+    return this.httpClient.post<User>(this.apiUrl, user);
+  }
+  public editUser(user: User): Observable<User> {
+    return this.httpClient.put<User>(this.apiUrl, user);
   }
 }

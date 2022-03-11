@@ -8,9 +8,20 @@ import {User} from "../../core/models/user.model";
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  @Input() users: User[];
-  constructor() { }
+
+  users: User[] = [];
+  constructor(private userManagementService: UserManagementService) { }
 
   ngOnInit() {
+    this.userManagementService.getAllUser().subscribe(
+      result => {
+        this.users = result;
+        console.log("users=", this.users);
+      }
+    )
+  }
+
+  deleteUser(id: number) {
+    console.log("Deleting user... not")
   }
 }

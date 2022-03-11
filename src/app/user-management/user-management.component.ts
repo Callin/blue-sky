@@ -14,7 +14,10 @@ export class UserManagementComponent implements OnInit {
   ngOnInit() {
     this.userManagementService
       .getAllUser()
-      .subscribe(response => this.users = response);
+      .subscribe(
+        response => this.users = response,
+          error => console.log("loool=", error)
+      );
     console.log("users=", this.users)
   }
 
